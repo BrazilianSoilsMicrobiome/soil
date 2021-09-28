@@ -10,12 +10,12 @@ m <- leaflet() %>%
   addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
 m  # Print the map
 
-
+# Without pipes
 # m <- leaflet()
 # m <- addTiles(m)
 # m <- addMarkers(m, lng=174.768, lat=-36.852, popup="The birthplace of R")
 # m 
 
-# install.packages("htmlwidgets")
+# install.packages("htmlwidgets") # to save map as HTML page
 library(htmlwidgets)
 saveWidget(m, file="m.html")
