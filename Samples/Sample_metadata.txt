@@ -1,0 +1,13 @@
+BMP_ID	target	Origin	Sample_name	Type	latitude	longitude	vegetal_coverage	R1	R2
+bmp1	16S	soil	J1	organic	-21.226336	-44.981787	tomato	J01_S45_L001_R1_001.fastq.gz	J01_S45_L001_R2_001.fastq.gz
+bmp2	16S	soil	J2	organic	-21.226336	-44.981787	tomato	J02_S46_L001_R1_001.fastq.gz	J02_S46_L001_R2_001.fastq.gz
+bmp3	16S	soil	J3	organic	-21.226336	-44.981787	tomato	J03_S47_L001_R1_001.fastq.gz	J03_S47_L001_R2_001.fastq.gz
+bmp4	16S	soil	J4	coventional	-15.608155	-56.062962	tomato	J04_S48_L001_R1_001.fastq.gz	J04_S48_L001_R2_001.fastq.gz
+bmp5	16S	soil	J5	coventional	-15.608155	-56.062962	tomato	J05_S49_L001_R1_001.fastq.gz	J05_S49_L001_R2_001.fastq.gz
+bmp6	16S	soil	J6	coventional	-15.608155	-56.062962	tomato	J06_S50_L001_R1_001.fastq.gz	J06_S50_L001_R2_001.fastq.gz
+bmp7	16S	soil	J7	organic	5.116982	-60.356531	pepper	J07_S51_L001_R1_001.fastq.gz	J07_S51_L001_R2_001.fastq.gz
+bmp8	16S	soil	J8	organic	5.116982	-60.356531	pepper	J08_S52_L001_R1_001.fastq.gz	J08_S52_L001_R2_001.fastq.gz
+bmp9	16S	soil	J9	organic	5.116982	-60.356531	pepper	J09_S53_L001_R1_001.fastq.gz	J09_S53_L001_R2_001.fastq.gz
+bmp10	16S	soil	J10	coventional	-30.332433	-54.362428	pepper	J10_S54_L001_R1_001.fastq.gz	J10_S54_L001_R2_001.fastq.gz
+bmp11	16S	soil	J11	coventional	-30.332433	-54.362428	pepper	J11_S55_L001_R1_001.fastq.gz	J11_S55_L001_R2_001.fastq.gz
+bmp12	16S	soil	J12	coventional	-30.332433	-54.362428	pepper	J12_S56_L001_R1_001.fastq.gz	J12_S56_L001_R2_001.fastq.gz
