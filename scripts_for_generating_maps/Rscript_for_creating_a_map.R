@@ -1,14 +1,22 @@
 # Code taken from 
 # https://melaniewalsh.github.io/Intro-Cultural-Analytics/07-Mapping/01-Mapping.html
 # and 
+# https://melaniewalsh.github.io/Intro-Cultural-Analytics/07-Mapping/03-Publish-Your-Map.html
+# 
+# install.packages("htmlwidgets") # to save map as HTML page
 # install.packages("leaflet")
+#
+library(htmlwidgets)
 library(leaflet)
 
+# Load sample data
+soil_samples_df <- read.delim(file = "../Samples/Sample_metadata.txt")
 
-m <- leaflet() %>%
-  addTiles() %>%  # Add default OpenStreetMap map tiles
-  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
-m  # Print the map
+# First Map example
+# m <- leaflet() %>%
+#   addTiles() %>%  # Add default OpenStreetMap map tiles
+#   addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+# m  # Print the map
 
 # Without pipes
 # m <- leaflet()
@@ -16,6 +24,10 @@ m  # Print the map
 # m <- addMarkers(m, lng=174.768, lat=-36.852, popup="The birthplace of R")
 # m 
 
-# install.packages("htmlwidgets") # to save map as HTML page
-library(htmlwidgets)
-saveWidget(m, file="m.html")
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=soil_samples_df$longitude, lat=soil_samples_df$latitude, popup=soil_samples_df$BMP_ID)
+m  # Print the map
+
+
+saveWidget(m, file="../m.html")
