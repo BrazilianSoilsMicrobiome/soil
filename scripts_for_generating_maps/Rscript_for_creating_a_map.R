@@ -30,4 +30,4 @@ m <- leaflet() %>%
 m  # Print the map
 
 
-saveWidget(m, file="../m.html")
+saveWidget(m, file="../soils_map.html")
