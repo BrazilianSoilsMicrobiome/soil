@@ -6,6 +6,8 @@
 # Improve your map
 # https://rpubs.com/Tanishq_Porwal/interactivemap
 # https://stackoverflow.com/questions/37798690/search-button-for-leaflet-r-map
+# https://emilyriederer.github.io/demo-crosstalk/tutorial/tutorial-rmd.html
+# https://emilyriederer.netlify.app/post/crosstalk/
 # 
 # install.packages("htmlwidgets") # to save map as HTML page
 # install.packages("leaflet")
