@@ -3,6 +3,10 @@
 # and 
 # https://melaniewalsh.github.io/Intro-Cultural-Analytics/07-Mapping/03-Publish-Your-Map.html
 # 
+# Improve your map
+# https://rpubs.com/Tanishq_Porwal/interactivemap
+# https://stackoverflow.com/questions/37798690/search-button-for-leaflet-r-map
+# 
 # install.packages("htmlwidgets") # to save map as HTML page
 # install.packages("leaflet")
 #
