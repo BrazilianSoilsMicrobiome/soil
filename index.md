@@ -11,5 +11,5 @@ Send me an email at [daniel.morais@brmicrobiome.org](mailto:daniel.morais@brmicr
 You can explore this map [as its own web page here](soils_map.html)
 
 Check the tools here:
-<iframe src="_layouts/post.html" height="500" width="500"></iframe>
+<iframe src="post.html" height="500" width="500"></iframe>
 
