@@ -1,17 +1,16 @@
 ---
 title: "Brazilian Soils Microbiome page"
-author: "kdanielmorais"
-date: "08/10/2021"
+
 output: html_document
 ---
-# information about editing and keeping html files instead of md files
-# https://jekyllrb.com/docs/step-by-step/04-layouts/#use-layouts
+[//]: # (information about editing and keeping html files instead of md files)
+[//]: # (https://jekyllrb.com/docs/step-by-step/04-layouts/#use-layouts)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Welcome to the Brazilian Soils Microbiome Database
-Explore the soil samples containing the microbial diversity of the Brazilian soils.
+### Explore the soil samples containing the microbial diversity of the Brazilian soils.
  
 
 ### Support or Contact
