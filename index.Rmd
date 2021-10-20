@@ -1,5 +1,5 @@
 ---
-title: "Brazilian Soils Microbiome page"
+title: 
 
 output: html_document
 ---
@@ -9,13 +9,10 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-## Welcome to the Brazilian Soils Microbiome Database
 ### Explore the soil samples containing the microbial diversity of the Brazilian soils.
  
 
-### Support or Contact
-
-Send me an email at [daniel.morais@brmicrobiome.org](mailto:daniel.morais@brmicrobiome.org)
+##### See in the map below the position of soil amplicon samples around Brazil. Select the samples of interest and 
 
 <iframe src="soils_map.html" height="500" width="500" data-external="1"></iframe>
 
