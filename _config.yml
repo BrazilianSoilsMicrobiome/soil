@@ -1,5 +1,6 @@
 theme: jekyll-theme-minimal
 title: The Microbiome of Brazilian Soils
+author: Daniel Kumazawa Morais
 description: 
 layout: default
 show_sidebar: TRUE
