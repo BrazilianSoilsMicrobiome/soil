@@ -18,10 +18,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 You can explore this map [as its own web page here](soils_map.html)
 
+[//]: # Input data
 
 ## Filterable table
 ```{r, echo=FALSE}
-DT::datatable(iris)
+soil_samples_df <- read.delim(file = "Samples/Sample_metadata.txt")
+DT::datatable(soil_samples_df)
 ```
 
 ## Plotly chart
