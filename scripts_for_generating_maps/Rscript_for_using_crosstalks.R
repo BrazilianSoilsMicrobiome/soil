@@ -2,6 +2,7 @@ devtools::install_github("jcheng5/d3scatter")
 library(d3scatter)
 library(leaflet)
 # Inspiration
+# https://github.com/matt-dray/rostrum-blog/blob/master/content/post/2018-09-12-crosstalk-memes.Rmd
 # https://matt-dray.github.io/earl18-crosstalk/04_leaflet-flexdash-dt-crosstalk.html
 # https://github.com/rstudio/crosstalk
 # https://rstudio.github.io/crosstalk/using.html
