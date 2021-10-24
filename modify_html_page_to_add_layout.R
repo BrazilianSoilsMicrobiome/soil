@@ -7,7 +7,7 @@ rmarkdown::render(input = "index.Rmd", output_format = "html_document",
 new_page <- read.delim(file = "index.html", header = F)
 row.names(new_page) <- 4:(nrow(new_page)+3)
 
-layout_lines <- data.frame(col1 = c("---", "layout = default", "---"))
+layout_lines <- data.frame(col1 = c("---", "layout: default", "---"))
 page_with_layout <- c(layout_lines[,1], new_page[,1])
 
 
