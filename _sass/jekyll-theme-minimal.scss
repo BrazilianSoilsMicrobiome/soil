@@ -58,6 +58,7 @@ a:hover small {
 .wrapper {
   width:860px;
   margin:0 auto;
+  overflow: auto;
 }
 
 blockquote {
@@ -83,6 +84,7 @@ pre {
 table {
   width:100%;
   border-collapse:collapse;
+  overflow: auto;
 }
 
 th, td {
@@ -122,6 +124,7 @@ header {
   width:270px;
   float:left;
   position:fixed;
+  overflow: auto;
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
@@ -189,6 +192,7 @@ section {
   width:500px;
   float:right;
   padding-bottom:50px;
+  overflow: auto;
 }
 
 small {
@@ -207,6 +211,7 @@ footer {
   float:left;
   position:fixed;
   bottom:50px;
+  overflow: auto;
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
@@ -215,6 +220,7 @@ footer {
   div.wrapper {
     width:auto;
     margin:0;
+    overflow: auto;
   }
 
   header, section, footer {
@@ -234,6 +240,7 @@ footer {
     border-width:1px 0;
     padding:20px 0;
     margin:0 0 20px;
+    overflow: auto;
   }
 
   header a small {
@@ -254,20 +261,24 @@ footer {
 
   header {
     padding:0;
+    overflow: auto;
   }
 
   header ul, header p.view {
     position:static;
+    overflow: auto;
   }
 
   pre, code {
     word-wrap:normal;
+    overflow: auto;
   }
 }
 
 @media print, screen and (max-width: 480px) {
   body {
     padding:15px;
+    overflow: auto;
   }
 
   .downloads {
