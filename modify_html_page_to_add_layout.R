@@ -13,4 +13,5 @@ page_with_layout <- c(layout_lines[,1], new_page[,1])
 
 write.table(x = page_with_layout, file = "index.html",
             quote = F,
-            row.names = F)
+            row.names = F,
+            col.names = F)
