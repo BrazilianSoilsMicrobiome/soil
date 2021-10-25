@@ -54,6 +54,6 @@ crosstalk::bscols(
   d3scatter::d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, ~Biome, width = "100%", height = 300),
   
   DT::datatable(data_ct,rownames = FALSE),
-  widths = c(6,6,12)
+  widths = c(6,6,8)
 )
 ```
