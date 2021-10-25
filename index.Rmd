@@ -3,40 +3,15 @@ title:
 
 output: html_document
 ---
-<!-- information about editing and keeping html files instead of md files -->
-<!-- https://jekyllrb.com/docs/step-by-step/04-layouts/#use-layouts -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ### Explore the soil samples containing the microbial diversity of the Brazilian soils.
  
+#### See in the map below the position of soil amplicon samples in Brazil. 
+#### Select the samples of interest and explore the results
 
-##### See in the map below the position of soil amplicon samples in Brazil. Select the samples of interest and explore the results
-
-<!-- <iframe src="soils_map.html" height="500" width="500" data-external="1"></iframe> -->
-
-<!-- You can explore this map [as its own web page here](soils_map.html) -->
-
-<!-- [//]: # Input data -->
-
-<!-- ## Filterable table -->
-<!-- ```{r, echo=FALSE} -->
-<!-- soil_samples_df <- read.delim(file = "Samples/Sample_metadata.txt") -->
-<!-- DT::datatable(soil_samples_df) -->
-<!-- ``` -->
-
-<!-- ## Plotly chart -->
-<!-- ```{r, echo=FALSE} -->
-<!-- fig <- plotly::plot_ly( -->
-<!--   x = c("giraffes", "orangutans", "monkeys"), -->
-<!--   y = c(20, 14, 23), -->
-<!--   name = "SF Zoo", -->
-<!--   type = "bar" -->
-<!-- ) -->
-
-<!-- fig -->
-<!-- ``` -->
 
 ## Interactive plots
 ```{r, echo=FALSE, message = FALSE, warning = FALSE}
