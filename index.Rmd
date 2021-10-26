@@ -8,16 +8,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ### Explore the soil samples containing the microbial diversity of the Brazilian soils.
- 
-#### See in the map below the position of soil amplicon samples in Brazil. 
-#### Select the samples of interest and explore the results
-<!-- ## Filterable table -->
-<!-- ```{r, echo=FALSE} -->
-<!-- soil_samples_df <- read.delim(file = "Samples/Sample_metadata.txt") -->
-<!-- DT::datatable(soil_samples_df) -->
-<!-- ``` -->
 
-### Interactive plots
+#### Select the samples of interest and explore the results
+
+
+#### Interactive plots
+##### See in the map below the position of soil amplicon samples in Brazil.
 ```{r, echo=FALSE, message = FALSE, warning = FALSE}
 library(leaflet)
 soil_samples_df <- read.delim(file = "Samples/Sample_metadata.txt")
@@ -26,16 +22,16 @@ soil_samples_df <- read.delim(file = "Samples/Sample_metadata.txt")
 data_ct <- crosstalk::SharedData$new(soil_samples_df[,c(1,5,6,7,11,12,13)])
 
 crosstalk::bscols(
-  widths = c(6,12), device = "xs",
-  list(
+  widths = c(6,6,8), device = "xs",
+  
     leaflet(data_ct, width = "100%", height = 300) %>%
     addTiles() %>%
     addMarkers(),
 
     d3scatter::d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, ~Biome,
-                         width = "100%", height = 300)
-  ),
+                         width = "100%", height = 300),
+
   DT::datatable(data_ct,rownames = FALSE, filter = 'top',
-                width = 400, height = 600)
+                width = 600, height = 600)
   )
 ```
