@@ -11,7 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
  
 #### See in the map below the position of soil amplicon samples in Brazil. 
 #### Select the samples of interest and explore the results
-
+## Filterable table
+```{r, echo=FALSE}
+soil_samples_df <- read.delim(file = "Samples/Sample_metadata.txt")
+DT::datatable(soil_samples_df)
+```
 
 ## Interactive plots
 ```{r, echo=FALSE, message = FALSE, warning = FALSE}
