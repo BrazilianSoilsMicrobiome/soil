@@ -15,4 +15,3 @@ write.table(x = page_with_layout, file = "index.html",
             quote = F,
             row.names = F,
             col.names = F)
-  

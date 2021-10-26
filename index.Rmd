@@ -36,6 +36,6 @@ crosstalk::bscols(
                          width = "100%", height = 300)
   ),
   DT::datatable(data_ct,rownames = FALSE, filter = 'top',
-                width = 400, height = 600, escape = c(2,3))
+                width = 400, height = 600)
   )
 ```
