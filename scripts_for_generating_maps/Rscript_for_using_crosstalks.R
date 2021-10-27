@@ -21,12 +21,17 @@ DT::datatable(data_ct)
 d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, ~Biome)
 
 crosstalk::bscols(
+  widths = c(6,6,8), device = "xs",
+  
   leaflet(data_ct, width = "100%", height = 300) %>%
     addTiles() %>%
     addMarkers(),
-  d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, ~Biome, width = "100%", height = 300),
-  DT::datatable(data_ct,rownames = FALSE)
-  ,widths = c(2,2,4)
+  
+  d3scatter::d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, ~Biome,
+                       width = "100%", height = 300),
+  
+  DT::datatable(data_ct,rownames = FALSE, filter = 'top',
+                width = 600, height = 600)
 )
 
 # 
