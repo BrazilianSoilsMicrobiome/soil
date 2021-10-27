@@ -138,11 +138,21 @@ ul.downloads, ul.menu {
   width:270px;
 }
 
+ul.menu {
+  list-style:none;
+  height:40px;
+  padding:0;
+  background: #f4f4f4;
+  border-radius:5px;
+  border:1px solid #e0e0e0;
+  width:540px;
+}
+
 .downloads li, .menu li {
   width:89px;
   float:left;
   border-right:1px solid #e0e0e0;
-  height:40px;
+  height:44px;
 }
 
 .downloads li:first-child a, .menu li:first-child a {
@@ -177,7 +187,12 @@ strong {
   font-weight:700;
 }
 
-.downloads li + li + li, .menu li + li + li {
+.downloads li + li + li {
+  border-right:none;
+  width:89px;
+}
+
+.menu li + li + li + li + li + li {
   border-right:none;
   width:89px;
 }
@@ -288,6 +303,10 @@ footer {
   .downloads li, .downloads li + li + li, .menu li, .menu li + li + li {
     width:33%;
   }
+  .menu li, .menu li + li + li + li + li + li {
+    width:16%;
+  }
+
 }
 
 @media print {
