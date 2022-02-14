@@ -123,7 +123,7 @@ kbd {
 header {
   width:300px;
   float:left;
-  position:fixed;
+  position:static;
   overflow: auto;
   -webkit-font-smoothing:subpixel-antialiased;
 }
