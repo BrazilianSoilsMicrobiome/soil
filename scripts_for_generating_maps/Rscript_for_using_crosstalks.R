@@ -28,22 +28,110 @@ setwd(dir = "G:/My Drive/daniel.kumazawa@ufv.br 2021-11-23 05 56/BrazilianSoilsM
 soil_samples_df<- read.delim(file = "Samples/new_samps_metadata.txt")
 
 ## REORDER
-soil_samples_df <- soil_samples_df[c(1,12,23,34,45,56,67,78,89,
-                                     c(2:11),c(13:22),c(24:33),
-                                     c(35:44),c(46:55),c(57:66),
-                                     c(68:77),c(79:88),c(90:94)),]
+soil_samples_df <- soil_samples_df[c(1,11,22,33,43,54,65,76,87,
+                                     c(2:10),c(12:21),c(23:32),
+                                     c(34:42),c(44:53),c(55:64),
+                                     c(66:75),c(77:86),c(88:92)),]
 
+## Rounding
+soil_samples_df$Org.Matter <- round(soil_samples_df$Org.Matter, digits = 2)
+
+## Add colors column
+soil_samples_df$colors <-  soil_samples_df$Biome %>%
+  gsub(pattern = "BR_Savanas", replacement = "orange") %>%
+  gsub(pattern = "Atlanctic_forest", replacement = "lightblue") %>%
+  gsub(pattern = "Amazon", replacement = "darkgreen") %>%
+  gsub(pattern = "Caatinga", replacement = "yellow") %>%
+  gsub(pattern = "Pampa", replacement = "lightgreen")
+
+colors_chosen <- c("#3e204f", "#5a4565", "#cec9d6", "#e2dbe9", "#bcaecc")
+
+soil_samples_df$colors <-  soil_samples_df$Biome %>%
+  gsub(pattern = "BR_Savanas", replacement = "#3e204f") %>%
+  gsub(pattern = "Atlanctic_forest", replacement = "#5a4565") %>%
+  gsub(pattern = "Amazon", replacement = "#cec9d6") %>%
+  gsub(pattern = "Caatinga", replacement = "#e2dbe9") %>%
+  gsub(pattern = "Pampa", replacement = "#bcaecc")
+
+soil_samples_df$colors <- as.factor(soil_samples_df$colors)
+soil_samples_df$Biome <- as.factor(soil_samples_df$Biome)
 
 dim(soil_samples_df)
 # feed shared object
 #data_ct <- crosstalk::SharedData$new(soil_samples_df[,c(1,2,3,5,6,7,11,12,13)])
 data_ct <- crosstalk::SharedData$new(soil_samples_df)
 
+
 # generate filterable table
 DT::datatable(data_ct)
-
+library(plotly)
+library(ggplot2)
 # d3scatter(iris, ~Petal.Length, ~Petal.Width, ~Species)
-d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, color = ~Biome)
+test <- ggplot2::ggplot(data = data_ct, aes(Org.Matter,Alpha_div))
+gg <- ggplot(data = data_ct, aes(x = Org.Matter, y = Alpha_div, col = Biome)) + 
+  geom_point() +
+  scale_color_manual(values = c("orange", "#008BBD", "darkgreen", "yellow", "lightgreen"))
+
+ggplotly(gg)
+
+
+test <- d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, color = ~colors)
+test <- d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, color = as.factor(colors_chosen))
+test <- d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, color = "red")
+d3scatter(data = data_ct, x = ~Org.Matter, y = ~Alpha_div, color = ~Biome)
+
+test$colors <- soil_samples_df$colors
+
+inherits(x = try(col2rgb(colors_chosen)), what = "try-error")
+
+test$x$color_spec$type <- "linear"
+test$x$color_spec$values <- c("orange", "#008BBD", "darkgreen", "yellow", "lightgreen")
+test$x$color_spec$values <- c("BR_Savanas" = "orange",
+     "Atlanctic_forest" = "#008BBD",
+     "Amazon" = "darkgreen",
+     "Caatinga" = "yellow",
+     "Pampa" = "brown")
+
+test$x$data$color <- test$x$data$color %>%
+  gsub(pattern = "BR_Savanas", replacement = "orange") %>%
+  gsub(pattern = "Atlanctic_forest", replacement = "#008BBD") %>%
+  gsub(pattern = "Amazon", replacement = "darkgreen") %>%
+  gsub(pattern = "Caatinga", replacement = "yellow") %>%
+  gsub(pattern = "Pampa", replacement = "lightgreen")
+
+test$x$color <- test$x$color %>%
+  gsub(pattern = "BR_Savanas", replacement = "orange") %>%
+  gsub(pattern = "Atlanctic_forest", replacement = "#008BBD") %>%
+  gsub(pattern = "Amazon", replacement = "darkgreen") %>%
+  gsub(pattern = "Caatinga", replacement = "yellow") %>%
+  gsub(pattern = "Pampa", replacement = "lightgreen")
+
+test$x$color_spec$values <- test$x$color_spec$values %>%
+  gsub(pattern = "BR_Savanas", replacement = "orange") %>%
+  gsub(pattern = "Atlanctic_forest", replacement = "#008BBD") %>%
+  gsub(pattern = "Amazon", replacement = "darkgreen") %>%
+  gsub(pattern = "Caatinga", replacement = "yellow") %>%
+  gsub(pattern = "Pampa", replacement = "lightgreen")
+
+
+  
+
+test <- d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, color = c("BR_Savanas" = "orange",
+                                                             "Atlanctic_forest" = "#008BBD",
+                                                             "Amazon" = "darkgreen",
+                                                             "Caatinga" = "yellow",
+                                                             "Pampa" = "brown")
+          )
+test$x$color %>%
+  gsub(pattern = "BR_Savanas", replacement = "pink")
+
+test$x$color <- test$x$color %>%
+  gsub(pattern = "BR_Savanas", replacement = "pink")
+  
+  
+temp <- c(5,7,6,8,2)
+barplot(temp, col = c("darkgreen","yellow","orange","brown","gray","#008BBD", "#4A6FE3"))
+barplot(temp, col = c("orange", "#008BBD", "darkgreen", "yellow", "lightgreen"))
 
 # d3scatter(data = data_ct, ~Org.Matter, ~Alpha_div, ~Biome, 
 #           colors = c("#023FA5","#7D87B9","#BEC1D4","#D6BCC0","#BB7784","#FFFFFF", "#4A6FE3"))
