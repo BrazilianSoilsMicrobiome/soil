@@ -67,6 +67,14 @@ biome_sampling_site_info <- c(paste("Biome: Amazon Forest", "<br>", "Samples sit
                               paste("Biome: Pantanal (Wetlands)", "<br>", "Samples sites: 0"),
                               paste("Biome: Coastal System", "<br>", "Samples sites: 0"))
 
+leaflet(data_ct, width = "100%", height = 300) %>%
+  addPolygons(data = sf_object$geom, 
+              color = colors, 
+              stroke = FALSE, 
+              popup = biome_sampling_site_info) %>%
+  addTiles() %>%
+  addCircles(color = "brown")
+
 crosstalk::bscols(
   widths = c(6,6,8), device = "xs",
   
