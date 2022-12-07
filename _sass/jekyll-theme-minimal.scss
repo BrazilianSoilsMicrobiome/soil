@@ -1,6 +1,16 @@
 @import "fonts";
 @import "rouge-github";
 
+.list_container ul {
+  width: 100% !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-content: center !important;
+  justify-content: space-evenly !important;
+  align-items: stretch !important;
+  flex-direction: row !important;
+}
+
 body {
   background-color: #fff;
   padding:40px;
