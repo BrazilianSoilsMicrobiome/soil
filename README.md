@@ -1,7 +1,7 @@
 # Welcome to the Repository of the Brazilian Soils Microbiome Database
 
 
-The anthropic effects on the soil cause changes in its characteristics, modifying its microbiome and functioning. To allocate data on the characteristics of Brazilian soils, promote new studies and monitoring, we present a interactive website for people to explore the characteristics of different soil samples across Brazil!
+The anthropic effects on the soil cause changes in its characteristics, modifying its microbiome and functioning. To allocate data on the characteristics of Brazilian soils, promote new studies and monitoring, we present an interactive website for people to explore the characteristics of different soil samples across Brazil!
 
 Clink this [*link*](https://braziliansoilsmicrobiome.github.io/soil/) to interact with our data!
 
