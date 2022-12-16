@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r, echo=FALSE, message = FALSE, warning = FALSE}
 library(leaflet)
-mock_samples_df <- read.delim(file = "reduced_mock.txt")
+mock_samples_df <- read.delim(file = "Samples/reduced_taxa_mock.txt")
 
 # feed shared object
 
