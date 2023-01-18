@@ -1,0 +1,84 @@
+---
+title:
+
+output: html_document
+---
+
+# Macronutrients Prototype
+
+```{r setup}
+
+library(knitr)
+library(tidyverse)
+library(plotly)
+library(crosstalk)
+library(ggthemes)
+library(DT)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Explore the soil samples containing the microbial diversity of the Brazilian soils.
+
+#### Select sample names, biome and soil parameters
+
+##### Use the table below to group and study soil chemical features.
+
+```{r plotly-crosstalk}
+#chamar os dados, usar diretório apropriado
+data <- read.delim("Samples/mock_macronutrients.txt")
+#aqui tenho que incluir os dados de macronutrientes
+shared_data <- data %>% 
+  select(Sample_ID, C, N, P, K, Lat, Long, Biome) %>% #nesse código, ele só ta omitindo os na, e editando os dados
+  #na.omit() %>% 
+  #mutate(region = stringr::str_replace(region, "&", "and"),
+  #        air_pollution = round(air_pollution, 1),
+  #        life_expectancy = round(life_expectancy, 1)) %>% 
+  SharedData$new()
+
+#plot começa aqui
+p <- shared_data %>% 
+  plot_ly(x = ~Lat, y = ~Long, color = ~Biome,
+              hoverinfo = "text",
+              text = ~paste("Sample:", Sample_ID,
+                            "<br>Carbon:", C,
+                            "<br>Nitrogen:", N,
+                            "<br>Potassium:", K,
+                            "<br>Phosphorus:", P)) %>% 
+  group_by(Biome) %>% 
+  add_markers(size = 3) %>%
+  layout(xaxis = list(title = "Latitude"),
+         yaxis = list(title = "Longitude"),
+         legend = list(font = list(size = 16)))
+
+# Combining several selectors
+
+bscols(widths = c(3,7),
+       list(
+         #aqui adiciono a região
+            filter_checkbox(id = "Biome", label = "Biome",
+                    sharedData = shared_data, group = ~Biome),
+            #seleciono a sample
+            filter_select(id = "Sample_ID", label = "Sample_ID",
+                    sharedData = shared_data, group = ~Sample_ID),
+            #adiciono o slider para um dos macronutrientes
+            filter_slider(id = "carbon", label = "Carbon",
+                    sharedData = shared_data, column = ~C),
+            #adiciono outro macronutrientes, etc.
+            filter_slider(id = "nitrogen", label = "Nitrogen",
+                    sharedData = shared_data, column = ~N),
+            #adiciono outro macronutrientes, etc.
+            filter_slider(id = "phosphorus", label = "Phosphorus",
+                    sharedData = shared_data, column = ~P),
+            #adiciono outro macronutrientes, etc.
+            filter_slider(id = "potassium", label = "Potassium",
+                    sharedData = shared_data, column = ~K)
+      ),
+       p)
+DT::datatable(shared_data,
+              rownames = FALSE, 
+              options = list(dom = 't',
+                             buttons = c('copy', 'csv', 'excel', 'pdf', 'print')),
+              width = "100%", height = "100%")
+
+```

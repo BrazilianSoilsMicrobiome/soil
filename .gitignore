@@ -5,3 +5,4 @@ _site
 Gemfile.lock
 *.gem
 .jekyll-cache
+raw_tag.rb
