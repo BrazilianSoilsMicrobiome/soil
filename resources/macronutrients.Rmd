@@ -14,6 +14,7 @@ library(plotly)
 library(crosstalk)
 library(ggthemes)
 library(DT)
+library(leaflet)
 
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -37,23 +38,23 @@ shared_data <- data %>%
   SharedData$new()
 
 #plot começa aqui
-p <- shared_data %>% 
-  plot_ly(x = ~Lat, y = ~Long, color = ~Biome,
-              hoverinfo = "text",
-              text = ~paste("Sample:", Sample_ID,
-                            "<br>Carbon:", C,
-                            "<br>Nitrogen:", N,
-                            "<br>Potassium:", K,
-                            "<br>Phosphorus:", P)) %>% 
-  group_by(Biome) %>% 
-  add_markers(size = 3) %>%
-  layout(xaxis = list(title = "Latitude"),
-         yaxis = list(title = "Longitude"),
-         legend = list(font = list(size = 16)))
+#p <- shared_data %>% 
+#  plot_ly(x = ~Lat, y = ~Long, color = ~Biome,
+#              hoverinfo = "text",
+#              text = ~paste("Sample:", Sample_ID,
+#                            "<br>Carbon:", C,
+#                            "<br>Nitrogen:", N,
+#                            "<br>Potassium:", K,
+#                            "<br>Phosphorus:", P)) %>% 
+#  group_by(Biome) %>% 
+#  add_markers(size = 3) %>%
+#  layout(xaxis = list(title = "Latitude"),
+#         yaxis = list(title = "Longitude"),
+#         legend = list(font = list(size = 16)))
 
 # Combining several selectors
 
-bscols(widths = c(3,7),
+bscols(#widths = c(3,7),
        list(
          #aqui adiciono a região
             filter_checkbox(id = "Biome", label = "Biome",
@@ -74,7 +75,13 @@ bscols(widths = c(3,7),
             filter_slider(id = "potassium", label = "Potassium",
                     sharedData = shared_data, column = ~K)
       ),
-       p)
+       leaflet(shared_data, width = "100%", height = 500) %>%
+        addTiles() %>%
+        addMarkers(),
+      d3scatter::d3scatter(data = shared_data, ~C, ~N, ~Biome,
+                         width = "100%", height = 300)#,
+      #p
+    )
 DT::datatable(shared_data,
               rownames = FALSE, 
               options = list(dom = 't',
