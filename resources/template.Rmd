@@ -18,11 +18,11 @@ library(qtlcharts)
 library(DT)
 
 data <- read.delim(file = "Samples/mock_all_data.txt")
-x <- ncol(data)-6
-y <- ncol(data)      
-data_soil <- data[,x:y]
-rm(x,y)
-data_taxa <- data[,params$taxa]
+x <- ncol(data) - 6
+y <- ncol(data)
+data_soil <- data[, x : y]
+rm(x, y)
+data_taxa <- data[, params$taxa]
 data_single <- cbind(data_taxa, data_soil)
 colnames(data_single[1]) <- params$name
 rownames(data_single) <- data$Sample_ID
@@ -36,13 +36,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 datatable(data_single,
                 rownames = FALSE,
-                filter = 'top',
-                options = list(pageLength = 5, 
-                               autoWidth = TRUE, 
-                               dom = 'Blfrtip',
-                               buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-                               lengthMenu = list(c(10,25,50,-1),
-                                              c(10,25,50,"All"))),
+                filter = "top",
+                options = list(pageLength = 5,
+                               autoWidth = TRUE,
+                               dom = "Blfrtip",
+                               buttons = c("copy", "csv", "excel", "pdf", "print"),
+                               lengthMenu = list(c(10, 25, 50, -1),
+                                              c(10, 25, 50, "All"))),
                 height = 600,
                 extensions = "Buttons")
 ```
