@@ -7,7 +7,7 @@ params:
   name: "Name namus"
 ---
 
-# Organism: `r params$name`
+<h1>Organism: `r params$name`</h1>
 
 ```{r setup, include=FALSE}
 params
@@ -24,13 +24,13 @@ data_soil <- data[, x : y]
 rm(x, y)
 data_taxa <- data[, params$taxa]
 data_single <- cbind(data_taxa, data_soil)
-colnames(data_single[1]) <- params$name
+colnames(data_single)[1] <- params$name
 rownames(data_single) <- data$Sample_ID
 
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-##The sumary data table for `r params$name`.
+<h2>The sumary data table for `r params$name`.</h2>
 
 ```{r, echo=FALSE, message = FALSE, warning = FALSE}
 
