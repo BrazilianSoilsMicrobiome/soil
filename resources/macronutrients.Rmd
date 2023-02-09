@@ -6,8 +6,13 @@ output: html_document
 
 # Macronutrients Prototype
 
-```{r setup}
+### Explore the soil samples containing the microbial diversity of the Brazilian soils.
 
+#### Select sample names, biome and soil parameters
+
+##### Use the table below to group and study soil chemical features.
+
+```{r echo=FALSE, message = FALSE, warning = FALSE}
 library(knitr)
 library(tidyverse)
 library(plotly)
@@ -16,16 +21,6 @@ library(ggthemes)
 library(DT)
 library(leaflet)
 
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-### Explore the soil samples containing the microbial diversity of the Brazilian soils.
-
-#### Select sample names, biome and soil parameters
-
-##### Use the table below to group and study soil chemical features.
-
-```{r plotly-crosstalk echo=FALSE, message = FALSE, warning = FALSE}
 #load data
 data <- read.delim("Samples/mock_macronutrients.txt")
 #select parameters
