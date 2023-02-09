@@ -17,8 +17,8 @@ Search for the taxon you are interested with. You will be redirected for a new p
 
 <script>
 var links = {
-  Taxa1: "taxa_pages/taxa1.html",
-  Taxa2: "taxa_pages/taxa2.html",
+  Taxa1: "resources/taxa_pages/taxa1.html",
+  Taxa2: "resources/taxa_pages/taxa2.html",
 };
 
 function filterSearch() {
