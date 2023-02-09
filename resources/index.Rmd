@@ -7,19 +7,6 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-```{=html}
-<div class="list_container">
-  <ul class="menu">
-    <li><a href="{{ site.github.tar_url }}">Download <strong>TAR Ball</strong></a></li>
-    <li><a href="{{ site.github.zip_url }}">Download <strong>ZIP File</strong></a></li>
-    <li><a href="{{ site.github.repository_url }}">View On <strong>GitHub</strong></a></li>
-    <li><a href="taxa.html" target="_blank" rel="noopener noreferrer">Get map by <strong>Taxa</strong></a></li>
-    <li><a href="under_construction.html" target="_blank" rel="noopener noreferrer">Precipitation <strong>Gradients</strong></a></li>
-    <li><a href="under_construction.html" target="_blank" rel="noopener noreferrer">Macronutrient <strong>Effects</strong></a></li>
-  </ul>
-</div>
-```
 ### Explore the soil samples containing the microbial diversity of the Brazilian soils.
 
 #### Select the samples of interest and explore the results
@@ -29,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ##### Use the map below to group and study soil microbiome features.
 ```{r, echo=FALSE, message = FALSE, warning = FALSE}
 library(leaflet)
+library(upsetjs)
+
 soil_samples_df <- read.delim(file = "Samples/Sample_metadata.txt")
 
 # feed shared object
@@ -47,4 +36,36 @@ crosstalk::bscols(
   DT::datatable(data_ct,rownames = FALSE, filter = 'top',
                 width = 600, height = 600)
   )
+
+#load data
+data <- read.delim(file = "C:/Users/henri/Desktop/Soil_Microbiome/sandbox/mock_all_data.txt")
+#get taxas and biome
+data_taxa <- data[,c(2:21, 26)]
+
+aggreg_data <- aggregate(data_taxa[,1], list(data_taxa$Biome), sum)
+colnames(aggreg_data)[1] <- "Biome"
+colnames(aggreg_data)[2] <- "taxa1"
+
+for(i in 2:20){
+  x = aggregate(data_taxa[,i], list(data_taxa$Biome), sum)
+  column = paste0("taxa", i)
+  colnames(x)[2] = column
+  aggreg_data <- cbind(aggreg_data, x[column])
+}
+
+#making mock data, in real data, chage 2000 to 1 or any threshold that represents a significant amount of a taxa in a sample
+biome <- aggreg_data[,1]
+aggreg_data[!aggreg_data >= 2000] <- 1
+aggreg_data[!aggreg_data < 2000] <- 0
+rownames(aggreg_data)<- biome
+aggreg_data <- aggreg_data[,-1]
+aggreg_data <- t(aggreg_data)
+aggreg_data <- as.data.frame(aggreg_data)
+
+#finally, upset plotting
+upsetjs() %>%
+  fromDataFrame(aggreg_data) %>%
+  generateIntersections(min = 2, max = NULL, empty = F, order.by = "cardinality",
+                        limit = NULL) %>%
+  interactiveChart()
 ```
