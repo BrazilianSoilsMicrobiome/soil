@@ -1,0 +1,125 @@
+---
+title: "taxa_landing"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Taxa navigating page
+
+Search for the taxon you are interested with. You will be redirected for a new page
+
+<input type="text" id="filterInput">
+<button onclick="filterSearch()">Search</button>
+<div id="suggestions"></div>
+
+<script>
+var links = {
+  Google: "https://www.google.com",
+  Wikipedia: "https://www.wikipedia.org",
+  ChatGPT: "https://openai.com/ai-service-products/#chat",
+  Youtube: "https://www.youtube.com"
+};
+
+function filterSearch() {
+  var input = document.getElementById("filterInput").value;
+  for (var tag in links) {
+    if (input === tag) {
+      window.open(links[tag], "_blank");
+      break;
+    }
+  }
+}
+
+document.getElementById("filterInput").addEventListener("input", showSuggestions);
+
+function showSuggestions() {
+  var input = document.getElementById("filterInput").value;
+  var suggestions = document.getElementById("suggestions");
+  suggestions.innerHTML = "";
+  for (var tag in links) {
+    if (tag.toLowerCase().startsWith(input.toLowerCase())) {
+      var suggestion = document.createElement("div");
+      suggestion.innerHTML = tag;
+      suggestion.addEventListener("click", function() {
+        document.getElementById("filterInput").value = this.innerHTML;
+        suggestions.innerHTML = "";
+      });
+      suggestions.appendChild(suggestion);
+    }
+  }
+}
+
+</script>
+
+### Here are some correlation heatmaps for each taxa
+To better visualize, the origianl heatmap was divided by four sections
+
+```{r message=FALSE}
+library(qtlcharts)
+#our data
+data <- read.delim("C:/Users/henri/Desktop/Soil_Microbiome/sandbox/mock_all_data.txt")
+
+#only taxa, must be edited when using real data
+data_taxa <- data[,c(1:21)]
+
+#name rows as ID
+rownames(data_taxa) <- data_taxa$Sample_ID
+data_taxa_clean <- data_taxa[, c(2:ncol(data_taxa))]
+
+#coercing into a matrix
+matrix_taxa<- as.matrix(data_taxa_clean)
+
+#get biomes vector
+biomes <- factor(data$Biome)
+
+#correlation and ordering
+spearman <- cor(data_taxa_clean, use="pairwise.complete.obs", method="spearman")
+ord <- hclust(as.dist(-spearman))$order
+
+#setting postions for sectorizing
+if(length(ord)%%2 ==0)
+  {
+  first_half <- length(ord)/2
+  second_half <- (length(ord)/2)+1
+  end <- length(ord)
+} else {
+  first_half <- length(round(ord/2))
+  second_half <- (length(round(ord/2))+1)
+  end <- length(ord)
+  }
+
+#filter spearman matrix by value
+#spearman_filtered<-which(abs(spearman) >= 0.2 )
+
+#ploting first quarter
+iplotCorr(data_taxa_clean[,ord],
+                      biomes, 
+                      corr=spearman[ord[c(1:first_half)],ord[c(1:first_half)]],
+                      chartOpts=list(scatcolors= RColorBrewer::brewer.pal(6,"Set2")))
+
+#ploting second quarter
+iplotCorr(data_taxa_clean[,ord],
+                       biomes,
+                       corr=spearman[ord[c(1:first_half)],ord[c(second_half:end)]],
+                       chartOpts=list(scatcolors= RColorBrewer::brewer.pal(6,"Set2")))
+
+#ploting third quarter
+iplotCorr(data_taxa_clean[,ord],
+                       biomes,
+                       #reorder=TRUE, 
+                       corr=spearman[ord[c(second_half:end)],ord[c(1:first_half)]],
+                       chartOpts=list(scatcolors= RColorBrewer::brewer.pal(6,"Set2")))
+
+
+#ploting fourth quarter
+iplotCorr(data_taxa_clean[,ord],
+                       biomes,
+                       #reorder=TRUE, 
+                       corr=spearman[ord[c(second_half:end)],ord[c(second_half:end)]],
+                       chartOpts=list(scatcolors= RColorBrewer::brewer.pal(6,"Set2")))
+
+
+```
