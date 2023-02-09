@@ -1,5 +1,5 @@
 ---
-title: "taxa_landing"
+title: "taxa_searching"
 output: html_document
 ---
 
@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Taxa navigating page
+## Taxa searching page
 
 Search for the taxon you are interested with. You will be redirected for a new page
 
@@ -17,10 +17,8 @@ Search for the taxon you are interested with. You will be redirected for a new p
 
 <script>
 var links = {
-  Google: "https://www.google.com",
-  Wikipedia: "https://www.wikipedia.org",
-  ChatGPT: "https://openai.com/ai-service-products/#chat",
-  Youtube: "https://www.youtube.com"
+  Taxa1: "taxa_pages/taxa1.html",
+  Taxa2: "taxa_pages/taxa2.html",
 };
 
 function filterSearch() {
