@@ -66,9 +66,10 @@ bscols(#widths = c(3,7),
             filter_slider(id = "potassium", label = "Potassium",
                     sharedData = shared_data, column = ~K)
       ),
-       leaflet(shared_data, width = "100%", height = 500) %>%
+        leaflet(shared_data, width = "100%", height = 500) %>%
         addTiles() %>%
-        addMarkers(),
+        addCircles(color = "brown"),
+
       d3scatter::d3scatter(data = shared_data, ~C, ~N, ~Biome,
                          width = "100%", height = 300)#,
       #p #when using plotly
