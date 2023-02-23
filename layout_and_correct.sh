@@ -8,5 +8,5 @@ for file in *.html; do
         sed -i '1d; 2 i ---\nlayout: default\n---' "$file"
     fi 
     # Perform the search and replace operation on each file
-    sed -i -r 's|\{\{(.*)\}\}|{\1}|g' "$file"
+    sed -i -r 's|\{\{(.*?)\}\}|{\1}|g' "$file"
 done
