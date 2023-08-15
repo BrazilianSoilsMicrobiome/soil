@@ -27,15 +27,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ##### Use the map below to group and study soil microbiome features.
 ```{r, echo=FALSE, message = FALSE, warning = FALSE}
 library(leaflet)
-sf_object <- readRDS(file = "../../download_data/biomes_2019_sf_bject.RDS")
+sf_object <- readRDS(file = "../../../download_data/biomes_2019_sf_bject.RDS")
 soil_samples_df <- read.delim(file = "Samples/new_samps_metadata.txt")
 
-## REORDER
-soil_samples_df <- soil_samples_df[c(1,12,23,34,45,56,67,78,89,
-                                     c(2:11),c(13:22),c(24:33),
-                                     c(35:44),c(46:55),c(57:66),
-                                     c(68:77),c(79:88),c(90:94)),]
-
+# Definition of colours for biome plotting
 colors = c("darkgreen","yellow","orange","brown","gray","#008BBD", "#4A6FE3")
 
 # subset coastal systems

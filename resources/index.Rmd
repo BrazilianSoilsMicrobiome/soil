@@ -38,7 +38,7 @@ crosstalk::bscols(
   )
 
 #load data
-data <- read.delim(file = "C:/Users/henri/Desktop/Soil_Microbiome/sandbox/mock_all_data.txt")
+data <- read.delim(file = "Samples/mock_all_data.txt")
 #get taxas and biome
 data_taxa <- data[,c(2:21, 26)]
 
